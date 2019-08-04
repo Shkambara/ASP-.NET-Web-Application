@@ -1,0 +1,70 @@
+﻿@model KolokwiumWEB.ViewModels.PeopleIndexViewModel
+
+@{
+    ViewBag.Title = "People";
+}
+
+<h2>Add Person</h2>
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Person.Name)
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.Person.Name)
+            @Html.ValidationMessageFor(m => m.Person.Name)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Person.Surname)
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.Person.Surname)
+            @Html.ValidationMessageFor(m => m.Person.Surname)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Person.IdRabat)
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.Person.IdRabat, Model.RabatsSelectList)
+            @Html.ValidationMessageFor(m => m.Person.IdRabat)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="submit" value="Add" />
+        </div>
+    </div>
+}
+<br/>
+<h2>People</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Rabat</th>
+            <th>Surname </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model.People)
+        {
+            <tr>
+                <td>
+                    @a.Name
+                </td>
+                <td>
+                    @a.Rabat.Name
+                </td>
+                <td>
+                    @a.Surname
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
